@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+void moveDisk(int n, char source, char destination, char auxiliary) {
+    if (n == 1) {
+        cout << "shifting disk 1 from " << source << " to " << destination << endl;
+        return;
+    }
+
+    moveDisk(n - 1, source, auxiliary, destination);
+    cout << "shifting disk " << n << " from " << source << " to " << destination << endl;
+    moveDisk(n - 1, auxiliary, destination, source);
+    cout << n << " " << source << " " << destination << " " << auxiliary << " " << endl;
+}
+
+void hanoi(int n) {
+    moveDisk(n, 'A', 'C', 'B');
+}
+
+int main() {
+    int numOfDisks;
+
+    cout << "enter the number of disks";
+    cin >> numOfDisks;
+
+    hanoi(numOfDisks);
+
+    return 0;
+}
